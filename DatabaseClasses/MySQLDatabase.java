@@ -43,8 +43,11 @@ public class MySQLDatabase {
       catch(SQLException sqle){
          System.out.println("Could not connect to db " + uri_);
          return false;
-         
+      }catch(Exception e) {
+         e.printStackTrace();
+         return false;
       }
+
    
    }//end make connection
    
@@ -63,7 +66,10 @@ public class MySQLDatabase {
          return false;
       }catch(NullPointerException npe){
          System.out.print("Null pointer exception");
+      }catch(Exception e) {
+            e.printStackTrace();
       }
+
       
       return false;
    
@@ -235,6 +241,8 @@ public class MySQLDatabase {
             System.out.println("SQL exception");
          }catch(NullPointerException npe){
             System.out.println("Null pointer exception");
+         }catch(Exception e) {
+            e.printStackTrace();
          }
       
          
@@ -272,7 +280,10 @@ public class MySQLDatabase {
         
       }catch(NullPointerException npe){
          System.out.println("Error in getData() : Null Pointer Exception");
+      }catch(Exception e) {
+            e.printStackTrace();
       }
+
    
       return sqlArr;
     
@@ -296,16 +307,16 @@ public class MySQLDatabase {
       //Handle errors for JDBC
       flag = false;
       se.printStackTrace();
-      
-      
-      
+
       }catch(NullPointerException npe){
          flag = false;
          //Handle errors for Class.forName
          System.out.println("Null pointer exceptoin");
 
-      }   
-         
+      }catch(Exception e) {
+         e.printStackTrace();
+         return false;
+      }     
       return flag;
    
    }//end setData()
